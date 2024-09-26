@@ -1,0 +1,21 @@
+body {
+  height: 100vh;
+}
+
+.header {
+  text-align: center; /* Centre le texte */
+  margin-bottom: 2rem; /* Espacement en bas pour séparer le texte du formulaire */
+}
+
+.kebab {
+  color: orange; /* Change la couleur du texte */
+}
+
+.balti-link {
+  text-decoration: none; /* Enlève le soulignement par défaut */
+  color: inherit; /* Garde la couleur du texte de l'élément parent */
+}
+
+.balti-link:hover {
+  text-decoration: underline; /* Ajoute un soulignement au survol */
+}
