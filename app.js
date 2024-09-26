@@ -21,13 +21,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     store: new MemoryStore({
-      checkPeriod: 86400000, // Nettoyage des sessions expirées toutes les 24 heures (optionnel)
+      checkPeriod: 86400000,
     }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: process.env.COOKIE_SECURE === "production",
+      secure: false,
+      // secure: process.env.COOKIE_SECURE === "production",
       maxAge: 1000 * 60 * 60 * 24,
     },
   })
