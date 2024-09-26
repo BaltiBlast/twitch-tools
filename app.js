@@ -2,6 +2,7 @@
 // npm
 const express = require("express");
 const session = require("express-session");
+const MemoryStore = require("memorystore")(session); // Optionnel : MemoryStore sans fuite
 
 require("dotenv").config();
 
@@ -19,6 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
+    store: new MemoryStore({
+      checkPeriod: 86400000, // Nettoyage des sessions expirées toutes les 24 heures (optionnel)
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
