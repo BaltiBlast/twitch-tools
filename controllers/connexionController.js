@@ -15,7 +15,6 @@ const loginController = {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       req.session.user = user;
-
       res.redirect("/");
     } catch (error) {
       res.status(401).json({ error: error.message });
@@ -25,7 +24,7 @@ const loginController = {
   // == GET == //
   // login
   loginGet: (req, res) => {
-    res.render("login");
+    res.render("login", { showNavbar: false });
   },
 
   logoutGet: (req, res) => {

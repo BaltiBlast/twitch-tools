@@ -3,19 +3,19 @@ body {
 }
 
 .header {
-  text-align: center; /* Centre le texte */
-  margin-bottom: 2rem; /* Espacement en bas pour séparer le texte du formulaire */
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .kebab {
-  color: orange; /* Change la couleur du texte */
+  color: orange;
 }
 
 .balti-link {
-  text-decoration: none; /* Enlève le soulignement par défaut */
-  color: inherit; /* Garde la couleur du texte de l'élément parent */
+  text-decoration: none;
+  color: inherit;
 }
 
 .balti-link:hover {
-  text-decoration: underline; /* Ajoute un soulignement au survol */
+  text-decoration: underline;
 }

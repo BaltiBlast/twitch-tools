@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
     <link rel="stylesheet" href="/style/generic.css" />
-    <title>Document</title>
+    <title>Twitch Tools</title>
   </head>
   <body class="container">
+    <% if (typeof showNavbar !== 'undefined' && showNavbar) { %>
+    <nav>
+      <ul>
+        <li>
+          <a href="/"><strong>Twitch Tools</strong></a>
+        </li>
+      </ul>
+      <ul>
+        <li><a href="/overlay">Overlay</a></li>
+        <li><a href="/profil/<%= locals.user.uid %>">Profil</a></li>
+        <li><a href="/logout">Déconnexion</a></li>
+      </ul>
+    </nav>
+    <% } %>
+

@@ -7,6 +7,7 @@ require("dotenv").config();
 
 // local
 const router = require("./router.js");
+const setUserDataGlobal = require("./middleware/setUserDataGlobal.js");
 
 // === CONFIGURATION === //
 const app = express();
@@ -22,11 +23,12 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
       maxAge: 1000 * 60 * 60 * 24,
     },
   })
 );
+app.use(setUserDataGlobal);
 app.use(router);
 
 // === LISTENER === //

@@ -1,11 +1,8 @@
 <%- include('partials/head.ejs') %>
 
-<header>
-  <a href="/">Home</a>
-</header>
-
 <main>
-  <p>Email du profil : <%=email%></p>
+  <p>Email du profil : <%=locals.user.email%></p>
+  <p>Id du profil : <%=locals.user.uid%></p>
 </main>
 
 <%- include('partials/footer.ejs') %>

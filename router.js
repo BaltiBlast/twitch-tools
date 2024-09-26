@@ -6,17 +6,16 @@ const app = require("express");
 const loginController = require("./controllers/connexionController.js");
 const { loginPost, loginGet, logoutGet } = loginController;
 
+const userController = require("./controllers/userController.js");
+const { getUserProfil } = userController;
+
+const homeController = require("./controllers/homeController.js");
+const { getHome } = homeController;
+
+const isAuthenticated = require("./middleware/isAuthenticated.js");
+
 // === CONFIGURATION === //
 const router = app.Router();
-
-// === MIDDLWARE === //
-function isAuthenticated(req, res, next) {
-  if (req.session.user) {
-    next();
-  } else {
-    res.redirect("/login");
-  }
-}
 
 // === GENERAL ROUTES === //
 // post
@@ -28,29 +27,15 @@ router.get("/logout", logoutGet);
 router.get("/login", loginGet);
 
 // === USER ROUTES === //
-router.get("/", isAuthenticated, (req, res) => {
-  const uid = req.session.user.uid;
-  res.render("home", { uid });
-});
-router.get("/profil/:userId", isAuthenticated, (req, res) => {
-  const email = req.session.user.email;
-  const uid = req.session.user.uid;
-  res.render("userProfil", { email, uid });
+router.get("/", isAuthenticated, getHome);
+router.get("/profil/:userId", isAuthenticated, getUserProfil);
+
+// === OVERLAY ROUTES === //
+router.get("/overlay", isAuthenticated, (req, res) => {
+  res.render("overlay", { showNavbar: true });
 });
 
-router.put("/users/:uid/displayName", async (req, res) => {
-  const uid = req.session.user.uid;
-
-  const newDisplayName = req.body.displayName;
-
-  try {
-    await admin.auth().updateUser(uid, { displayName: newDisplayName });
-    res.status(200).json({ message: "DisplayName mis à jour avec succès" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Une erreur est survenue lors de la mise à jour du displayName" });
-  }
-});
+// === MANAGE ROUTES === //
 
 // === EXPORTS === //
 module.exports = router;
